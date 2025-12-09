@@ -1,0 +1,65 @@
+/* Scalable magic 8-ball — change --size to scale everything proportionally */
+.magic-8-ball {
+    /* set this to any size you want (was 200px). All child sizes are computed from this */
+    --size: 400px;
+
+    position: relative;
+    width: var(--size);
+    height: var(--size);
+    margin: calc(var(--size) * 0.15625) auto;
+    /* ~50px for 320px */
+}
+
+.outer-ball {
+    z-index: -1000;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 30%, #444, #000);
+    border-radius: 50%;
+    /* scaled shadow */
+    box-shadow: 0 calc(var(--size) * 0.05) calc(var(--size) * 0.1) rgba(0, 0, 0, 0.5);
+}
+
+
+.inner-display {
+    /* make a simple stacking context so children z-index works predictably */
+    z-index: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    background-color: #0b2846;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* triangle sized relative to the overall ball size so it scales proportionately */
+.triangle {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1; /* behind the text but above the inner-display background */
+    width: 0;
+    height: 0;
+    border-left: calc(var(--size) * 0.2) solid transparent;
+    border-right: calc(var(--size) * 0.2) solid transparent;
+    border-top: calc(var(--size) * 0.35) solid rgb(37, 55, 218);
+}
+
+/* keep the text on top */
+.response-text {
+    position: absolute;
+    z-index: 2;
+    color: white;
+    font-family: Arial, sans-serif;
+    font-size: calc(var(--size) * 0.2);
+    font-weight: bold;
+    text-align: center;
+    width: 80%;
+}
