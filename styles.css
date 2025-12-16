@@ -52,14 +52,17 @@
     border-top: calc(var(--size) * 0.35) solid rgb(37, 55, 218);
 }
 
-/* keep the text on top */
 .response-text {
     position: absolute;
+    top: 20%;         /* same vertical anchor as triangle */
+    left: 40%;
+    transform: translate(-50%, -60%);
     z-index: 2;
     color: white;
     font-family: Arial, sans-serif;
-    font-size: calc(var(--size) * 0.2);
+    font-size: calc(var(--size) * 0.12); /* slightly smaller to fit */
     font-weight: bold;
     text-align: center;
-    width: 80%;
+    width: 50%;       /* fits neatly inside the triangle */
+    line-height: 1.1;
 }
